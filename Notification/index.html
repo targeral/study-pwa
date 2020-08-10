@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link href="./tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+  <form class="flex justify-center mb-8">
+    <select name="45" id="time-select">
+      <option value="45">45</option>
+      <option value="90">90</option>
+    </select>
+  </form>
+  <div class="flex justify-center mb-8">
+    <div
+      id="reset-time"
+      class="hidden rounded bg-blue-500 h-20 w-40 flex justify-center items-center"
+    ></div>
+    <div
+      id="status-content"
+      class="hidden rounded bg-green-500 h-20 w-40 flex justify-center items-center"
+    ></div>
+  </div>
+  <div class="flex space-x-4 justify-center">
+    <div id="start" class="bg-blue-500 w-1/3 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">start</div>
+    <div id="stop" class="bg-red-500 w-1/3 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">stop</div>
+  </div>
+  <div id="btn">btn</div>
+  <div id="push">push</div>
+  <script type="module" src="./app.js"></script>
+  <script type="module" src="./service/index.js"></script>
+  <script type="module" src="./service/utils.js"></script>
+  <!-- <script type="module" src="./push.js"></script> -->
+</body>
+</html>
