@@ -4,13 +4,13 @@
 
 ### Notification
 
-可以按照http-server来本地启动服务：
+可以安装http-server来本地启动服务：
 
 ```
 npm install http-server -g
 ```
 
-然后在Notification目录执行 `http-server`
+然后在Notification目录下执行 `http-server`
 
 ### PushServer
 
