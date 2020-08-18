@@ -8,10 +8,8 @@ const db = new Datastore({
 const ids = [];
 
 function saveSubscriptionToDatabase(subscription) {
-  console.log('fuck')
   return new Promise(function(resolve, reject) {
     db.insert(subscription, function(err, newDoc) {
-      console.log('herer')
       if (err) {
         reject(err);
         return;

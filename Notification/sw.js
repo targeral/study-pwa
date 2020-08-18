@@ -1,12 +1,14 @@
+console.log('asdf')
 const CACHE_ID = 'HAVE_TO_BREAK';
 const CACHE_RESOURCE = [
   './',
-  './icon.jpg',
+  './icon/icon.jpg',
   './service/index.js',
   './service/utils.js',
   './app.js',
   './sw.js',
-  '././manifest.webmanifest',
+  './manifest.webmanifest',
+  './js13kpwa.webmanifest',
   './tailwind.min.css',
 ];
 const RUN_STATUS = {
@@ -32,6 +34,13 @@ self.addEventListener('install', function(event) {
   );
 });
 
+self.addEventListener('activate', function(event) {
+  console.log('activate');
+  const runAllTime = new Promise((resolve, reject) => {
+  });
+  // event.waitUntil(runAllTime())
+});
+
 const checkNotificationPermission = () => Notification.permission;
 
 const runHaveToBreak = ({time = 45}) => {
@@ -42,7 +51,7 @@ const runHaveToBreak = ({time = 45}) => {
     const oneMin = 1000 * 60 / 60;
     const option = {
       body: '你该休息一会儿了',
-      icon: './icon.jpg'
+      icon: './icon/icon.jpg'
     };
     state.starTime = new Date();
     state.timer = setInterval(() => {
@@ -135,10 +144,59 @@ self.addEventListener('push', function(event) {
   if (event.data) {
     const option = {
       body: event.data.text(),
-      icon: './icon.jpg'
+      icon: './icon/icon.jpg'
     };
     self.registration.showNotification('_(:з」∠)_', option);
   } else {
     console.log('This push event has no data.');
   }
+});
+
+
+// notification click
+self.addEventListener('notificationclick', function(event) {
+  const clickedNotification = event.notification;
+  clickedNotification.close();
+
+  // Do something as the result of the notification click
+  const promiseChain = doSomething();
+  event.waitUntil(promiseChain);
+});
+
+// or click notification action
+self.addEventListener('notificationclick', function(event) {
+  if (!event.action) {
+    // Was a normal notification click
+    console.log('Notification Click.');
+    return;
+  }
+
+  switch (event.action) {
+    case 'coffee-action':
+      console.log('User ❤️️\'s coffee.');
+      break;
+    case 'doughnut-action':
+      console.log('User ❤️️\'s doughnuts.');
+      break;
+    case 'gramophone-action':
+      console.log('User ❤️️\'s music.');
+      break;
+    case 'atom-action':
+      console.log('User ❤️️\'s science.');
+      break;
+    default:
+      console.log(`Unknown action clicked: '${event.action}'`);
+      break;
+  }
+});
+
+self.addEventListener('notificationclose', function(event) {
+  const dismissedNotification = event.notification;
+
+  const promiseChain = notificationCloseAnalytics();
+  event.waitUntil(promiseChain);
+});
+
+self.addEventListener('beforeinstallprompt', () => {
+  console.log('beforeinstallprompt');
 });

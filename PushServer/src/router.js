@@ -26,7 +26,6 @@ module.exports = app => {
     if(isValidSaveRequest(req, res)) {
       return saveSubscriptionToDatabase(req.body)
       .then(function(subscriptionId) {
-        console.log('asdfadf')
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify({ data: { success: true } }));
         fuck();

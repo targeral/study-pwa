@@ -23,7 +23,7 @@ const main = () => {
       resetTime.innerHTML = `还有${state}分钟该休息了。`;
     }, 1000);
   };
-
+  // 本地https下，注意注释掉
   fetch('/current-time')
     .then(res => res.json())
     .then(res => {

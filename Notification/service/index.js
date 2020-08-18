@@ -6,7 +6,7 @@ export function askPermission() {
   }
 
   return Notification.requestPermission().then(permission => {
-    if (Notification.permission !== status) {
+    if (Notification.permission !== permission) {
       Notification.permission = permission;
     }
     return permission;
@@ -23,29 +23,29 @@ export function subscribeUserToPush() {
         )
       };
 
-      return registration.pushManager.subscribe(options);
+      // return registration.pushManager.subscribe(options);
     })
-    .then(subscription => {
-      return fetch('http://localhost:3000/api/save-subscription/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(subscription)
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Bad');
-        }
+    // .then(subscription => {
+    //   return fetch('http://localhost:3000/api/save-subscription/', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(subscription)
+    //   })
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error('Bad');
+    //     }
 
-        return response.json();
-      })
-      .then(res => {
-        if (!(res.data && res.data.success)) {
-          throw new Error('Bad response from server');
-        }
-      });
-    })
+    //     return response.json();
+    //   })
+    //   .then(res => {
+    //     if (!(res.data && res.data.success)) {
+    //       throw new Error('Bad response from server');
+    //     }
+    //   });
+    // });
 }
 
 function sendSubscriptionToBackEnd(subscription) {
