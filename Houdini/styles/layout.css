@@ -1,0 +1,25 @@
+@supports (background: paint(something)) {
+  h1 {
+    /*
+      Optionally set property values.
+      This can be done at root or local scope
+    */
+    --extra-scallopRadius: 15; /* default: 10 */
+    --extra-scallopColor: #8266ff; /* default: black */
+    --extra-scallopWeight: 3; /* default: 2 */
+
+    background: paint(extra-scallopedBorder);
+    line-height: 1.5;
+  }
+
+  i {
+    --extra-scallopRadius: 5; /* default: 10 */
+    --extra-scallopColor: #00eeff; /* default: black */
+    --extra-scallopWeight: 1; /* default: 2 */
+
+    /* Must add padding to show border properly*/
+    padding: 0.75rem;
+
+    background: paint(extra-scallopedBorder);
+  }
+}
